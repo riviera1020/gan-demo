@@ -1,22 +1,25 @@
 # gan-demo
 Simple GAN Demo with Anime picture
 
-### Remote Setting
-In remote machine(battle ship), run
+### Env Setup
+先進508, run
     
-    jupyter notebook --no-browser --port=8889
+    hrun -N l04 -C bash pre_run.sh
+
+### Remote Setting
+In remote machine(508), run
+
+    hrun -N l04 jupyter notebook --no-browser --port=8889 --allow-root --ip=0.0.0.0
 
 In local machine, run
     
-    ssh -N -L localhost:8888:localhost:8889 <user@remote.ip>
+    ssh -N -L localhost:8889:l04:8889 <user@remote.ip>
 
 Finally, use the following url
     
-    localhost:8888/
+    localhost:8889/<token>
 
 ### Run
-    %run dcgan.py --inputs_dir <inputs_dir>
-    %run wgan.py --inputs_dir <inputs_dir>
+    %run dcgan.py
+    %run wgan.py
 
-### Data
-    /nfs/Valkyrie/riviera1020/extra_data/one_tag_images/
