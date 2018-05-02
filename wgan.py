@@ -1,4 +1,8 @@
-from __future__ import print_function, division
+import os
+import sys
+import numpy as np
+from PIL import Image
+from glob import glob
 
 from keras.datasets import mnist
 from keras.layers import Input, Dense, Reshape, Flatten, Dropout
@@ -7,19 +11,12 @@ from keras.layers.advanced_activations import LeakyReLU
 from keras.layers.convolutional import UpSampling2D, Conv2D
 from keras.models import Sequential, Model
 from keras.optimizers import RMSprop
+
 from functools import partial
 
 import keras.backend as K
 
 import matplotlib.pyplot as plt
-
-import sys
-import os
-import argparse
-from PIL import Image
-from glob import glob
-
-import numpy as np
 
 class WGAN():
     def __init__(self, inputs_dir):
@@ -238,10 +235,7 @@ class WGAN():
 
 if __name__ == '__main__':
 
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--inputs_dir', type=str, help='directory of input images')
-    args = parser.parse_args()
-
-    wgan = WGAN(args.inputs_dir)
+    inputs_dir = './one_tag_images'
+    wgan = WGAN(inputs_dir)
     wgan.train(epochs=4000, batch_size=32, save_interval=50)
 
